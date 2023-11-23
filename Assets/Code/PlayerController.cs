@@ -64,7 +64,7 @@ public class PlayerController : MonoBehaviour
     public void DecreaseBombMax() => maxBomb--;
 
     public void IncreaseBombPower() => maxPower++;
-    public void DecreaseBombPower() => maxBomb--;
+    public void DecreaseBombPower() => maxPower--;
 
     public void IncreaseMoveSpeed() => moveSpeed += 1f;
     public void DecreaseMoveSpeed() => moveSpeed -= 1f;

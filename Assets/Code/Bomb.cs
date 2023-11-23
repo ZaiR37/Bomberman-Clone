@@ -12,6 +12,11 @@ public class Bomb : LevelObject
     [SerializeField] private int timer = 3;
     [SerializeField] private float currentTime = 0;
 
+    [Header("Collider")]
+    [SerializeField] private CircleCollider2D physicCollider;
+    [SerializeField] private CircleCollider2D eventCollider;
+
+
     private void Update()
     {
         currentTime += Time.deltaTime;
@@ -24,6 +29,13 @@ public class Bomb : LevelObject
         player.DecreaseCurrentBomb();
 
         SpawnExplosion();
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (!other.CompareTag("Player")) return;
+        physicCollider.enabled = true;
+        eventCollider.enabled = false;
     }
 
     public void Setup(PlayerController player, int maxPower)
@@ -143,6 +155,4 @@ public class Bomb : LevelObject
         Vector3 position = LevelGrid.Instance.GetWorldPosition(gridPosition);
         Instantiate(prefab, position, rotation);
     }
-
-
 }
